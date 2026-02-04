@@ -1,4 +1,4 @@
-module oci-editor
+module github.com/Iristack/oci-editor
 
 go 1.25
 
