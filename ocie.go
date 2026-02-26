@@ -185,6 +185,16 @@ func (s *Spec) SetProcessArgs(args []string) *Spec {
 	return s
 }
 
+func (s *Spec) AppendProcessArgs(args ...string) *Spec {
+	if err := s.ready(); err != nil {
+		return s
+	}
+
+	s.readyProcess()
+	s.specs.Process.Args = append(s.specs.Process.Args, args...)
+	return s
+}
+
 // SetProcessCommandLine set process.CommandLine
 func (s *Spec) SetProcessCommandLine(cmdLine string) *Spec {
 	if err := s.ready(); err != nil {
