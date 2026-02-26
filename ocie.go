@@ -1862,6 +1862,16 @@ func (s *Spec) SetLinuxPersonality(personality *specs.LinuxPersonality) *Spec {
 	return s
 }
 
+func (s *Spec) AppendProcessEnv(env []string) *Spec {
+	if err := s.ready(); err != nil {
+		return s
+	}
+
+	s.readyProcess()
+	s.specs.Process.Env = append(s.specs.Process.Env, env...)
+	return s
+}
+
 // SetLinuxPersonalityDomain set specs.Linux.Personality.Domain
 func (s *Spec) SetLinuxPersonalityDomain(domain specs.LinuxPersonalityDomain) *Spec {
 	if err := s.ready(); err != nil {
